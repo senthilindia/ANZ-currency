@@ -9,7 +9,7 @@ import {
 } from "../actions/types";
 import { convert } from "../../utils/currencyUtils";
 
-export default function(state, { type, payload }) {
+function currencyReducerCase (state, { type, payload }) {
   switch (type) {
     case FETCH_CURRENCY:
       return {
@@ -62,3 +62,5 @@ export default function(state, { type, payload }) {
       return state || {};
   }
 }
+
+export default currencyReducerCase;

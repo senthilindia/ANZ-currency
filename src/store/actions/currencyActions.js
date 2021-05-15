@@ -76,7 +76,7 @@ export const toChangeInput = payload => {
  */
 export const fromCurrencyChange = payload => (dispatch, getState) => {
   getRateRequest(payload, getState().currency.convertTo)
-    .then(res => {
+    .then(res => { 
       dispatch({
         type: FETCH_CURRENCY,
         payload: res.data

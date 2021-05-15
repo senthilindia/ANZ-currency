@@ -7,11 +7,12 @@
  */
 export function displayCurrency({
   currencyList = [],
-  currencyId = "EUR",
+  currencyId = "AUD",
   number = 0
 }) {
   const displayedCurrency = currencyName({ currencyList, currencyId });
-  const formatting = new Intl.NumberFormat("de-DE").format(number);
+  let formatting = number;
+  
 
   return `${formatting} ${displayedCurrency}`;
 }
@@ -22,7 +23,7 @@ export function displayCurrency({
  * @param currencyId
  * @returns {*}
  */
-export function currencyName({ currencyList = [], currencyId = "EUR" }) {
+export function currencyName({ currencyList = [], currencyId = "AUD" }) {
   return currencyList.find(currency => currency.id === currencyId).currencyName;
 }
 
@@ -35,6 +36,7 @@ export function currencyName({ currencyList = [], currencyId = "EUR" }) {
  */
 export function convert({ amount = 0, state = {}, mode ='from' }) {
   const rate = Object.values(state.data)[0];
+
   let result;
 
   if (mode === "from") {
@@ -43,6 +45,6 @@ export function convert({ amount = 0, state = {}, mode ='from' }) {
   if (mode === "to") {
     result = amount * (1 / rate);
   }
-
-  return Math.round(result * 1000) / 1000;
+  result = Math.round(result * 1000) / 1000;
+  return  result.toFixed(2);
 }

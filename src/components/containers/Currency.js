@@ -43,7 +43,8 @@ function Currency({
 }) {
   useEffect(() => {
     getRate(convertFrom, convertTo);
-  }, []);
+    console.log('calling');
+  }, []);// eslint-disable-line react-hooks/exhaustive-deps
 
   const currencyList = Object.values(currencyExchangeList);
   return (
@@ -53,7 +54,7 @@ function Currency({
       {!isFetched && !error && <Loading>Loading...</Loading>}
       {isFetched && (
         <AppWrapper>
-          <CurrencyInfo>
+          <CurrencyInfo> 
             <p>
               {displayCurrency({
                 currencyList,
@@ -75,6 +76,7 @@ function Currency({
             <Input
               type="number"
               value={from}
+              placeholder="please enter the value"
               onChange={e => fromChangeInput(e.target.value)}
             />
 
